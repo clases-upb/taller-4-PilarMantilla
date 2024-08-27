@@ -9,6 +9,29 @@ public class App {
     
 
     public static void main(String[] args) {
+        try {
+            double cant_veces=0;
+            cant_veces=(Math.random()*(30-20)+21);
+
+            System.out.println(Numeros_impares(100));
+            System.out.println(Numeros_impares(80));
+            System.out.println(NumerosFibonacci(10));
+            System.out.println(NumerosFibonacci(1));
+
+            for(byte cant=0; cant<=cant_veces; cant++ ){
+                System.out.println(Raiz_cuadrada());
+            }
+
+            System.out.println(Numeros_pares(4, 1));
+            System.out.println(Numeros_pares(3, 70));
+            System.out.println(Suma_numeros(80));
+            System.out.println(Suma_numeros(0));
+            System.out.println(Loteria_premios());
+
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error" +e);
+
+        }
         
         //Coloque los llamados a cada función de acuerdo con cada enunciado
         //codifique el control de errores para el main
@@ -25,6 +48,31 @@ public class App {
      * hasta ese número separados por comas en grupos de hasta 8 números.
      * 
     */
+    public static String Numeros_impares(int numero){
+        try {
+            final int cien=100, cinco=500, num_max=8, dos=2;
+            int contador=0;
+            String texto="";
+                if (numero >=cien && numero<=cinco){
+
+                    for (int num=1; num <= numero; num++){
+                        if (num % dos != 0){
+                            texto += num +", ";
+                            contador ++;
+                        
+                        if(contador % num_max ==0){
+                            texto += "\n";
+                        }
+                    }
+                }
+                return texto;
+            } else 
+                return "error el numero es menor a 100 o mayor a 500";
+
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
     /* 2. 	Escriba una función que reciba un entero N mayor de 2  y retorne un string cono esos N términos de la 
     serie de Fibonacci (La sucesión de Fibonacci se trata de una serie infinita de números naturales que empieza con un 0 y un 1 
@@ -33,6 +81,28 @@ public class App {
      * 
      * 
     */
+    public static String NumerosFibonacci(int N){
+        try {
+            String texto="";
+            int operacion=0, a=0, b=1, dos=2;
+
+            if(N>=dos){
+                texto+= a+", "+b+", ";
+                for (int num=2; num < N;num++) {
+                    operacion=a+b;
+                    texto+= operacion+ ", ";
+                    a=b;
+                    b=operacion;
+                }
+            }else{
+                return "Numero menor a 2";
+            }
+            return texto;
+
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
     /* 
      * 3.	Diseñar y desarrollar una función que NO reciba datos de entrada, genere aleatoriamente un número entre 2 y 355, 
@@ -42,7 +112,18 @@ public class App {
        de veces que va a llamar a la función y en un ciclo, mostrar los resultados.
 
     */
+    public static double Raiz_cuadrada(){
+        try {
+            double resultado=0;
+            final int dos=2, tres=3, trescientos=355;
 
+            resultado= Math.sqrt((int)(Math.random()*(trescientos-dos)+tres));
+
+            return resultado;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 
 
 
@@ -52,7 +133,30 @@ public class App {
 
         Llame la función desde el main e imprimir el resultado arrojado.
     */
+    public static String Numeros_pares(int valor_inic, int valor_final){
+        try {
+            String texto= "";
+            final int numeros=900, dos=2;
+            int pares=0;
 
+        if (valor_inic < valor_final) {
+
+            for (short num=0; num<numeros; num++) {
+                pares= (int)((Math.random()*(valor_final-valor_inic)+valor_inic+1));
+                if (pares%dos ==0) {
+                    texto+= pares + ",";                    
+                }
+                
+            }
+        }else{
+            return "el valor inicial es mayor al valor final";
+        }
+        return texto;
+
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
 
 
@@ -60,10 +164,28 @@ public class App {
         y los sume.  La función deberá retornar el total de la suma. Usted defina los rangos que va a usar en el cálculo.
 
         Llame la función desde el main e imprimir el resultado arrojado.
-
-      
     */
+    public static int Suma_numeros(int cantidad){
+        try {
+            int resultado_suma=0, numeros=0; 
+            final int cien=100, quince=15, seis=16;
 
+            if (cantidad >0) {
+                for(int val=1; val<=cantidad; val++){
+                    numeros=(int)(Math.random()*(cien-quince)+seis);
+                    resultado_suma+= numeros;
+                }                
+
+            }else{
+                return -1;
+            }
+
+            return resultado_suma;
+
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 
     /* 6.	Se requiere una función para simular el sorteo de una lotería, de acuerdo con las siguientes condiciones:
 
@@ -99,10 +221,38 @@ public class App {
 
             La función no recibe parámetros y devuelve un string con toda la lista de premios. El main, invoca la función 
             e imprime el resultado que esta arroje. 
-
-
-     * 
-     * 
     */
+    public static String Loteria_premios(){
+        try {
+            String texto="";
+            final String menores= "======PREMIOS MENORES=======", secos="======PREMIOS SECOS=========";
+            final int seis=6, veinte=20, cero=0000, nueve=9999, diez=0001, cien=100, cincuenta=150, cincuenta_uno=101,
+            cinco=5, dos=2;
+            int premiado=0, serie=0, generado=0;
+
+            texto+=menores+"\n";
+            for(int num=1; num<=veinte; num++){
+                generado=(int)(Math.random()*(veinte-seis)+seis+1);
+                
+
+                if (generado>=seis && generado <=veinte) {
+                    premiado=(int)(Math.random()*(nueve-cero)+diez);
+                    serie=(int)(Math.random()*(cincuenta-cien)+cincuenta_uno);
+                    texto+= "Sorteo # " + generado+ " - Numero Premiado "+ premiado+ " - Serie "+serie+"\n";
+
+                }else if (generado>=cinco && generado <=dos) {
+                        premiado=(int)(Math.random()*(nueve-cero)+diez);
+                        serie=(int)(Math.random()*(cincuenta-cien)+cincuenta_uno);
+                        texto+= "Sorteo # " + generado+ " - Numero Premiado "+ premiado+ " - Serie "+serie+"\n";
+    
+                }
+                
+            }
+            return texto;
+            
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
 }
